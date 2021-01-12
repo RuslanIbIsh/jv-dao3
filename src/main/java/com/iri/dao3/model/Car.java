@@ -1,5 +1,6 @@
 package com.iri.dao3.model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Car {
@@ -8,10 +9,10 @@ public class Car {
     private Manufacturer manufacturer;
     private List<Driver> drivers;
 
-    public Car(String model, Manufacturer manufacturer, List<Driver> drivers) {
+    public Car(String model, Manufacturer manufacturer) {
         this.model = model;
         this.manufacturer = manufacturer;
-        this.drivers = drivers;
+        this.drivers = Collections.emptyList();
     }
 
     public Long getId() {

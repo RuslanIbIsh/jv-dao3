@@ -14,9 +14,9 @@ public class Application {
         manufacturerService.create(manufacturer);
         manufacturerService.get(manufacturer.getId());
         manufacturerService.getAll();
-        manufacturer.setName("Toyota");
-        manufacturer.setCountry("Turkey");
-        manufacturerService.update(manufacturer);
+        Manufacturer updatedManufacturer = new Manufacturer("Toyota", "Turkey");
+        updatedManufacturer.setId(manufacturer.getId());
+        manufacturerService.update(updatedManufacturer);
         manufacturerService.delete(manufacturer.getId());
     }
 }

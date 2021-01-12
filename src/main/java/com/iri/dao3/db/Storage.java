@@ -9,8 +9,7 @@ public class Storage {
     private static long manufacturerId = 0;
 
     public static Manufacturer addManufacturer(Manufacturer manufacturer) {
-        manufacturerId++;
-        manufacturer.setId(manufacturerId);
+        manufacturer.setId(++manufacturerId);
         manufacturers.add(manufacturer);
         return manufacturer;
     }

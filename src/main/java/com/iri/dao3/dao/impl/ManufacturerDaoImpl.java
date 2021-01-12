@@ -6,6 +6,7 @@ import com.iri.dao3.lib.Dao;
 import com.iri.dao3.model.Manufacturer;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
@@ -28,11 +29,10 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        return Storage.manufacturers.stream()
-                .filter(manufacturer1 -> manufacturer1.getId().equals(manufacturer.getId()))
-                .map(manufacturer1 -> manufacturer1 = manufacturer)
-                .findFirst()
-                .get();
+        IntStream.range(0, Storage.manufacturers.size())
+                .filter(i -> Storage.manufacturers.get(i).getId().equals(manufacturer.getId()))
+                .forEach(i -> Storage.manufacturers.set(i, manufacturer));
+        return manufacturer;
     }
 
     @Override

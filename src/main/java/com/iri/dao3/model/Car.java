@@ -1,6 +1,6 @@
 package com.iri.dao3.model;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
@@ -12,7 +12,7 @@ public class Car {
     public Car(String model, Manufacturer manufacturer) {
         this.model = model;
         this.manufacturer = manufacturer;
-        this.drivers = Collections.emptyList();
+        this.drivers = new ArrayList<>();
     }
 
     public Long getId() {

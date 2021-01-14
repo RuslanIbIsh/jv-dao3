@@ -25,18 +25,15 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
                         connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, manufacturer.getName());
             preparedStatement.setString(2, manufacturer.getCountry());
-            int result = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
                 manufacturer.setId(resultSet.getObject(1, Long.class));
             }
-            if (result > 0) {
-                return manufacturer;
-            }
-        } catch (SQLException throwables) {
-            throw new DataProcessingException("Can't get connection in method create", throwables);
+            return manufacturer;
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get connection in method create", e);
         }
-        throw new DataProcessingException("Can't return manufacturer from method create");
     }
 
     @Override
@@ -50,11 +47,10 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
             while (resultSet.next()) {
                 return constructManufaturerFromResultSet(resultSet);
             }
-
-        } catch (SQLException throwables) {
-            throw new DataProcessingException("Can't get connection in method get", throwables);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get connection in method get", e);
         }
-        throw new DataProcessingException("Can't get Manufacturer in method get");
+        return Optional.empty();
     }
 
     @Override
@@ -68,8 +64,8 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
                 manufacturers.add(constructManufaturerFromResultSet(resultSet).get());
             }
             return manufacturers;
-        } catch (SQLException throwables) {
-            throw new DataProcessingException("Can't get connection in method get", throwables);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get connection in method get", e);
         }
     }
 
@@ -87,8 +83,8 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
             if (result > 0) {
                 return manufacturer;
             }
-        } catch (SQLException throwables) {
-            throw new DataProcessingException("Can't get connection in method delete", throwables);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get connection in method delete", e);
         }
         throw new DataProcessingException("Can't update Manufacturer");
     }
@@ -101,8 +97,8 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
                         connection.prepareStatement(deleteQuery)) {
             preparedStatement.setLong(1, id);
             return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException throwables) {
-            throw new DataProcessingException("Can't get connection in method delete", throwables);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get connection in method delete", e);
         }
     }
 

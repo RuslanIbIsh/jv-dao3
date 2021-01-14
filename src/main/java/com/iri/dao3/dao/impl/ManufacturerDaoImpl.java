@@ -2,13 +2,11 @@ package com.iri.dao3.dao.impl;
 
 import com.iri.dao3.dao.ManufacturerDao;
 import com.iri.dao3.db.Storage;
-import com.iri.dao3.lib.Dao;
 import com.iri.dao3.model.Manufacturer;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-@Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
     @Override
     public Manufacturer create(Manufacturer manufacturer) {

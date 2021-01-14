@@ -6,10 +6,10 @@ CREATE TABLE `manufacturer` (
   `id` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(225) COLLATE utf8_general_ci NOT NULL,
   `country` VARCHAR(225) COLLATE utf8_general_ci NOT NULL,
-  `deleted` TINYINT(1) NOT NULL,
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY USING BTREE (`id`)
 ) ENGINE=InnoDB
-AUTO_INCREMENT=7 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'
+AUTO_INCREMENT=10 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'
 ;
 
 

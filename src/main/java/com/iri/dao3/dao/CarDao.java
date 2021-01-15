@@ -1,19 +1,13 @@
 package com.iri.dao3.dao;
 
 import com.iri.dao3.model.Car;
+import com.iri.dao3.model.Driver;
 import java.util.List;
-import java.util.Optional;
 
-public interface CarDao {
-    Car create(Car car);
+public interface CarDao extends GenericDao<Car, Long> {
+    void addDriverToCar(Driver driver, Car car);
 
-    Optional<Car> get(Long id);
-
-    List<Car> getAll();
-
-    Car update(Car car);
-
-    boolean delete(Long id);
+    void removeDriverFromCar(Driver driver, Car car);
 
     List<Car> getAllByDriver(Long driverId);
 }

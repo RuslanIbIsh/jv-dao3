@@ -100,7 +100,7 @@ public class CarDaoImpl implements CarDao {
             preparedStatement.setLong(2, car.getManufacturer().getId());
             preparedStatement.setLong(3, car.getId());
             preparedStatement.executeUpdate();
-            removeDriverFromCar(null, car);
+            removeDriversFromCar(car);
             for (Driver driver : car.getDrivers()) {
                 addDriverToCar(driver, car);
             }
@@ -140,11 +140,12 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public void removeDriverFromCar(Driver driver, Car car) {
-        String deleteQuery = "DELETE FROM `cars_drivers` WHERE car_id = ?";
+        String deleteQuery = "DELETE FROM `cars_drivers` WHERE car_id = ? AND driver_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)
         ) {
             preparedStatement.setLong(1, car.getId());
+            preparedStatement.setLong(2, driver.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete in method removeDriverFromCar", e);
@@ -197,7 +198,18 @@ public class CarDaoImpl implements CarDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't fetch in method getAllDriversByCar", e);
         }
+    }
 
+    private void removeDriversFromCar(Car car) {
+        String deleteQuery = "DELETE FROM `cars_drivers` WHERE car_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)
+        ) {
+            preparedStatement.setLong(1, car.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't execute in method removeDriversFromCar", e);
+        }
     }
 
     private Optional<Car> constructCarFromResultSet(ResultSet resultSet) throws SQLException {

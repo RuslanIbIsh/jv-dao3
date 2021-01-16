@@ -30,7 +30,7 @@ AUTO_INCREMENT=1 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'
 CREATE TABLE `cars` (
   `id` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `model` VARCHAR(225) COLLATE utf8_general_ci NOT NULL,
-  `deleted` TINYINT(1) NOT NULL,
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
   `manufacturer_id` BIGINT(11) NOT NULL,
   PRIMARY KEY USING BTREE (`id`),
   UNIQUE KEY `id` USING BTREE (`id`),

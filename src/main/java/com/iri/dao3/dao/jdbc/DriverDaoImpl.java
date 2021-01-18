@@ -43,7 +43,7 @@ public class DriverDaoImpl implements DriverDao {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             Driver driver = null;
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 driver = constructDriverFromResultSet(resultSet);
             }
             return Optional.ofNullable(driver);

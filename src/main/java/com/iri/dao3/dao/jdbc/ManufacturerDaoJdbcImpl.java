@@ -65,7 +65,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
             }
             return manufacturers;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get connection in method get", e);
+            throw new DataProcessingException("Can't get connection in method getAll", e);
         }
     }
 
@@ -84,7 +84,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
                 return manufacturer;
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get connection in method delete", e);
+            throw new DataProcessingException("Can't get connection in method update", e);
         }
         throw new DataProcessingException("Can't update Manufacturer");
     }

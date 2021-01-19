@@ -82,9 +82,9 @@ public class DriverDaoImpl implements DriverDao {
                 return driver;
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get connection in method update driver", e);
+            throw new DataProcessingException("Can't update driver", e);
         }
-        throw new DataProcessingException("Can't update driver");
+        throw new DataProcessingException("Can't return driver from method update");
     }
 
     @Override

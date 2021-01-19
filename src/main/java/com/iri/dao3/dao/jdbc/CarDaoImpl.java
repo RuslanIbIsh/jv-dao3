@@ -57,7 +57,9 @@ public class CarDaoImpl implements CarDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't retrieve car in method get", e);
         }
-        car.setDrivers(getAllDriversByCar(car));
+        if (car != null) {
+            car.setDrivers(getAllDriversByCar(car));
+        }
         return Optional.ofNullable(car);
     }
 
@@ -88,7 +90,7 @@ public class CarDaoImpl implements CarDao {
     @Override
     public Car update(Car car) {
         String updateQuery = "UPDATE cars SET model = ?, manufacturer_id = ? "
-                + "WHERE id = ? AND deleted != TRUE";
+                + "WHERE id = ? AND deleted = false ";
         removeDriversFromCar(car);
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
@@ -139,10 +141,12 @@ public class CarDaoImpl implements CarDao {
                 + "INNER JOIN cars c ON cd.car_id = c.id "
                 + "INNER JOIN drivers d ON cd.driver_id = d.id "
                 + "INNER JOIN manufacturer m ON c.manufacturer_id = m.id "
-                + "WHERE c.deleted = false AND d.deleted = false AND m.deleted = false ";
+                + "WHERE c.deleted = false AND d.deleted = false "
+                + "AND m.deleted = false AND cd.driver_id = ? ";
         List<Car> cars = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+            preparedStatement.setLong(1, driverId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 cars.add(constructCarFromResultSet(resultSet));

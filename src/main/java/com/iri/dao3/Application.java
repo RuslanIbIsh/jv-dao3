@@ -35,7 +35,7 @@ public class Application {
         driverService.get(driverOne.getId());
         driverService.getAll();
         Driver updatedDriver = driverService.get(driverOne.getId());
-        updatedDriver.setName("Leo");
+        updatedDriver.setName("Leonard");
         driverService.update(updatedDriver);
         driverService.delete(driverOne.getId());
 

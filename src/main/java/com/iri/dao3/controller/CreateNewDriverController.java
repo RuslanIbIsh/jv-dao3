@@ -29,5 +29,4 @@ public class CreateNewDriverController extends HttpServlet {
         driverService.create(driver);
         resp.sendRedirect(req.getContextPath() + "/drivers");
     }
-
 }

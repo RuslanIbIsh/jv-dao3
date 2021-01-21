@@ -14,7 +14,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>createNewDriver</servlet-name>
-        <servlet-class>com.iri.dao3.controller.CreateNewDriverController</servlet-class>
+        <servlet-class>com.iri.dao3.controller.CreateDriverController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createNewDriver</servlet-name>
@@ -46,7 +46,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>createNewCar</servlet-name>
-        <servlet-class>com.iri.dao3.controller.CreateNewCarController</servlet-class>
+        <servlet-class>com.iri.dao3.controller.CreateCarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createNewCar</servlet-name>

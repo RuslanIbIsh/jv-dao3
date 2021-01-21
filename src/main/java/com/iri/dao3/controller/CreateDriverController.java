@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CreateNewDriverController extends HttpServlet {
+public class CreateDriverController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.iri.dao3");
     private final DriverService driverService =
             (DriverService) injector.getInstance(DriverService.class);

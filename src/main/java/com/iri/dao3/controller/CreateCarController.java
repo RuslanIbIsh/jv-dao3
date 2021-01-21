@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CreateNewCarController extends HttpServlet {
+public class CreateCarController extends HttpServlet {
     private static Injector injector = Injector.getInstance("com.iri.dao3");
     private final CarService carService =
             (CarService) injector.getInstance(CarService.class);

@@ -17,14 +17,14 @@ public class CreateNewDriverController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/driver/addDriver.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/driver/create.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String driverName = req.getParameter("name");
-        String licenseNumber = req.getParameter("license_number");
+        String licenseNumber = req.getParameter("licenseNumber");
         Driver driver = new Driver(driverName, licenseNumber);
         driverService.create(driver);
         resp.sendRedirect(req.getContextPath() + "/drivers");

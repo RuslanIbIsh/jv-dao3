@@ -11,11 +11,11 @@
 <h1>All cars</h1>
 <table border="1">
     <tr>
-        <th>id</th>
-        <th>model</th>
-        <th>manufacturer</th>
-        <th>driver</th>
-        <th>delete</th>
+        <th>Id</th>
+        <th>Model</th>
+        <th>Manufacturer</th>
+        <th>Driver</th>
+        <th>Delete</th>
     </tr>
     <c:forEach var="car" items="${cars}">
         <tr>

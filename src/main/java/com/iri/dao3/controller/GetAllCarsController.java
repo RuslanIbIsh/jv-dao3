@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RenderAllCarsController extends HttpServlet {
+public class GetAllCarsController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.iri.dao3");
     private final CarService carService =
             (CarService) injector.getInstance(CarService.class);
@@ -20,6 +20,6 @@ public class RenderAllCarsController extends HttpServlet {
             throws ServletException, IOException {
         List<Car> cars = carService.getAll();
         req.setAttribute("cars", cars);
-        req.getRequestDispatcher("/WEB-INF/view/car/cars.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/car/all.jsp").forward(req, resp);
     }
 }

@@ -21,11 +21,11 @@
         <url-pattern>/drivers/add</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>renderAllDrivers</servlet-name>
-        <servlet-class>com.iri.dao3.controller.RenderAllDriversController</servlet-class>
+        <servlet-name>getAllDrivers</servlet-name>
+        <servlet-class>com.iri.dao3.controller.GetAllDriversController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>renderAllDrivers</servlet-name>
+        <servlet-name>getAllDrivers</servlet-name>
         <url-pattern>/drivers</url-pattern>
     </servlet-mapping>
     <servlet>
@@ -37,11 +37,11 @@
         <url-pattern>/manufacturers/add</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>renderAllManufacturers</servlet-name>
-        <servlet-class>com.iri.dao3.controller.RenderAllManufacturersController</servlet-class>
+        <servlet-name>getAllManufacturers</servlet-name>
+        <servlet-class>com.iri.dao3.controller.GetAllManufacturersController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>renderAllManufacturers</servlet-name>
+        <servlet-name>getAllManufacturers</servlet-name>
         <url-pattern>/manufacturers</url-pattern>
     </servlet-mapping>
     <servlet>
@@ -53,11 +53,11 @@
         <url-pattern>/cars/add</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>renderAllCars</servlet-name>
-        <servlet-class>com.iri.dao3.controller.RenderAllCarsController</servlet-class>
+        <servlet-name>getAllCars</servlet-name>
+        <servlet-class>com.iri.dao3.controller.GetAllCarsController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>renderAllCars</servlet-name>
+        <servlet-name>getAllCars</servlet-name>
         <url-pattern>/cars</url-pattern>
     </servlet-mapping>
     <servlet>

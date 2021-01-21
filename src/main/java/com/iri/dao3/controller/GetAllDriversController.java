@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RenderAllDriversController extends HttpServlet {
+public class GetAllDriversController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.iri.dao3");
     private final DriverService driverService =
             (DriverService) injector.getInstance(DriverService.class);
@@ -20,7 +20,7 @@ public class RenderAllDriversController extends HttpServlet {
             throws ServletException, IOException {
         List<Driver> drivers = driverService.getAll();
         req.setAttribute("drivers", drivers);
-        req.getRequestDispatcher("/WEB-INF/view/driver/drivers.jsp")
+        req.getRequestDispatcher("/WEB-INF/view/driver/all.jsp")
                 .forward(req, resp);
     }
 }

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>manufacturers</title>
+    <title>Manufacturers</title>
 </head>
 <body>
 <div>
@@ -12,10 +12,10 @@
 
 <table border="1">
     <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>country</th>
-        <th>delete</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Delete</th>
     </tr>
     <c:forEach var="manufacturer" items="${manufacturers}">
         <tr>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RenderAllManufacturersController extends HttpServlet {
+public class GetAllManufacturersController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.iri.dao3");
     private final ManufacturerService manufacturerService =
             (ManufacturerService) injector.getInstance(ManufacturerService.class);
@@ -20,7 +20,7 @@ public class RenderAllManufacturersController extends HttpServlet {
             throws ServletException, IOException {
         List<Manufacturer> manufacturers = manufacturerService.getAll();
         req.setAttribute("manufacturers", manufacturers);
-        req.getRequestDispatcher("/WEB-INF/view/manufacturer/manufacturers.jsp")
+        req.getRequestDispatcher("/WEB-INF/view/manufacturer/all.jsp")
                 .forward(req, resp);
     }
 }

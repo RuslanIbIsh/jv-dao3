@@ -14,6 +14,7 @@
         <th>id</th>
         <th>model</th>
         <th>manufacturer</th>
+        <th>driver</th>
         <th>delete</th>
     </tr>
     <c:forEach var="car" items="${cars}">
@@ -26,6 +27,9 @@
             </td>
             <td>
                 <c:out value="${car.manufacturer.name}"/>
+            </td>
+            <td>
+                <c:out value="${car.drivers}"/>
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}/cars/delete?id=${car.id}">Delete</a>

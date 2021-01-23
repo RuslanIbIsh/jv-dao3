@@ -11,8 +11,9 @@
 <form method="post" action="${pageContext.request.contextPath}/drivers/add">
     Please provide driver name: <input type="text" name="name">
     provide license number: <input type="text" name="licenseNumber">
+    enter login: <input type="text" name="login">
+    enter password:<input type="password" name="password">
     <button type="submit">Add new driver</button>
 </form>
-
 </body>
 </html>

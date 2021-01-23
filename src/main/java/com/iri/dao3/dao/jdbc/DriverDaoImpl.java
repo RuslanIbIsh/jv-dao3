@@ -18,12 +18,15 @@ import java.util.Optional;
 public class DriverDaoImpl implements DriverDao {
     @Override
     public Driver create(Driver driver) {
-        String insertQuery = "INSERT INTO drivers (name, license_number) VALUES(?, ?)";
+        String insertQuery = "INSERT INTO drivers (name, license_number, login, "
+                + "password ) VALUES(?, ?, ?, ?) ";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement =
                         connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, driver.getName());
             preparedStatement.setString(2, driver.getLicenceNumber());
+            preparedStatement.setString(3, driver.getLogin());
+            preparedStatement.setString(4, driver.getPassword());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -70,13 +73,16 @@ public class DriverDaoImpl implements DriverDao {
 
     @Override
     public Driver update(Driver driver) {
-        String updateQuery = "UPDATE drivers SET name = ?, license_number = ? "
-                + "WHERE id = ? AND deleted = false";
+        String updateQuery = "UPDATE drivers SET name = ?, license_number = ?, "
+                + " login = ?, password = ? "
+                + "WHERE id = ? AND deleted = false ";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
             preparedStatement.setString(1, driver.getName());
             preparedStatement.setString(2, driver.getLicenceNumber());
-            preparedStatement.setLong(3, driver.getId());
+            preparedStatement.setString(3, driver.getLogin());
+            preparedStatement.setString(4, driver.getPassword());
+            preparedStatement.setLong(5, driver.getId());
             int result = preparedStatement.executeUpdate();
             if (result > 0) {
                 return driver;
@@ -99,13 +105,34 @@ public class DriverDaoImpl implements DriverDao {
         }
     }
 
+    @Override
+    public Optional<Driver> findByLogin(String login) {
+        String selectQuery = "SELECT * FROM drivers WHERE deleted = false AND login = ?";
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Driver driver = null;
+            if (resultSet.next()) {
+                driver = constructDriverFromResultSet(resultSet);
+            }
+            return Optional.ofNullable(driver);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Could not get driver by login " + login, e);
+        }
+    }
+
     private Driver constructDriverFromResultSet(ResultSet resultSet)
             throws SQLException {
         Long driverId = resultSet.getObject("id", Long.class);
         String name = resultSet.getNString("name");
         String licenceNumber = resultSet.getNString("license_number");
+        String login = resultSet.getNString("login");
+        String password = resultSet.getNString("password");
         Driver driver = new Driver(name, licenceNumber);
         driver.setId(driverId);
+        driver.setLogin(login);
+        driver.setPassword(password);
         return driver;
     }
 }

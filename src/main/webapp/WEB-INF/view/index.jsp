@@ -36,6 +36,9 @@
 <div>
     <a href="${pageContext.request.contextPath}/cars/drivers/add">Add Driver to Car</a>
 </div>
-
+<br>
+<div>
+    <a href="${pageContext.request.contextPath}/cars/driver">Cars current logged driver</a>
+</div>
 </body>
 </html>

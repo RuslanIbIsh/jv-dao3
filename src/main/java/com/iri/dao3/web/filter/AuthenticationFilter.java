@@ -1,7 +1,5 @@
 package com.iri.dao3.web.filter;
 
-import com.iri.dao3.lib.Injector;
-import com.iri.dao3.service.DriverService;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driverId";
-    private static final Injector injector = Injector.getInstance("com.iri.dao3");
-    DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
 
     @Override
     public void init(FilterConfig filterConfig)
@@ -36,7 +32,7 @@ public class AuthenticationFilter implements Filter {
             return;
         }
         Long driverId = (Long) req.getSession().getAttribute(DRIVER_ID);
-        if (driverId == null || driverService.get(driverId) == null) {
+        if (driverId == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }

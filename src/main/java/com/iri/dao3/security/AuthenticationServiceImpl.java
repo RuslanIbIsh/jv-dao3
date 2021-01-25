@@ -5,6 +5,7 @@ import com.iri.dao3.exception.AuthenticationException;
 import com.iri.dao3.lib.Inject;
 import com.iri.dao3.lib.Service;
 import com.iri.dao3.model.Driver;
+import java.util.Optional;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -13,10 +14,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public Driver login(String login, String password) throws AuthenticationException {
-        Driver driver = driverDao.findByLogin(login)
-                .orElseThrow(() -> new AuthenticationException("Incorrect login or password"));
-        if (driver.getPassword().equals(password)) {
-            return driver;
+        Optional<Driver> driverFromDB = driverDao.findByLogin(login);
+        if (driverFromDB.isPresent() && driverFromDB.get().getPassword().equals(password)) {
+            return driverFromDB.get();
         }
         throw new AuthenticationException("Incorrect login or password");
     }

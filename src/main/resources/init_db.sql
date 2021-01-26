@@ -21,6 +21,8 @@ CREATE TABLE `drivers` (
   `name` VARCHAR(225) COLLATE utf8_general_ci NOT NULL,
   `license_number` VARCHAR(225) COLLATE utf8_general_ci NOT NULL,
   `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  `login` VARCHAR(225) COLLATE utf8_general_ci NOT NULL,
+  `password` VARCHAR(225) COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY USING BTREE (`id`),
   UNIQUE KEY `id` USING BTREE (`id`)
 ) ENGINE=InnoDB
